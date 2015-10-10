@@ -1,0 +1,25 @@
+version: 0
+
+# OS type of VM
+type: linux
+
+# Boot configurations
+boot:
+  kernel: vmlinuz64
+  initrd: initrd.img
+  cmdline: loglevel=3 user=docker console=ttyS0 console=tty0 noembed nomodeset norestore waitusb=10:LABEL=boot2docker-data base host=boot2docker
+
+# VM configurations for xhyve arguments
+vm:
+  acpi: true
+  cups: 1
+  memory: 1G
+  pci:
+    - "0:0,hostbridge"
+    - "31,lpc"
+  lpc:
+    - "com1,stdio"
+  net:
+    - "2:0,virtio-net"
+  hdd:
+    - "4,virtio-blk,boot2docker-data.img"

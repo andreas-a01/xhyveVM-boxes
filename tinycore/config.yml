@@ -1,0 +1,23 @@
+version: 0
+
+# OS type of VM
+type: linux
+
+# Boot configurations
+boot:
+  kernel: vmlinuz
+  initrd: initrd.gz
+  cmdline: earlyprintk=serial console=ttyS0
+
+# VM configurations for xhyve arguments
+vm:
+  acpi: true
+  cups: 1
+  memory: 1G
+  pci:
+    - "0:0,hostbridge"
+    - "31,lpc"
+  lpc:
+    - "com1,stdio"
+  net:
+    - "2:0,virtio-net"
